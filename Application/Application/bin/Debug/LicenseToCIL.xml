@@ -1,0 +1,1229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>LicenseToCIL</name></assembly>
+<members>
+<member name="T:LicenseToCIL.Stack.S`1">
+<summary>
+ Represents a stack state by nesting.
+ E S is the empty stack.
+ E S S is a stack with one element.
+ E S S S is a stack with two elements.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.volatile'``1">
+<summary>
+ [_, addr --&gt; _, addr] Subsequent pointer reference is volatile.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.unbox'any``1(System.Type)">
+<summary>
+ [_, obj --&gt; _, value or obj] Extract a value-type from obj, its boxed representation
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.unbox'val``1(System.Type)">
+<summary>
+ [_, obj --&gt; _, valueTypePtr] Extract a value-type from obj, its boxed representation.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.unaligned``1">
+<summary>
+ [_, addr --&gt; _, addr] Subsequent pointer instruction might be unaligned.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.throw``2">
+<summary>
+ [_, exn --&gt; _] Throw an exception.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.tail``1">
+<summary>
+ [_, _] Mark following call as a tail call.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.switch``1(System.Collections.Generic.IEnumerable{LicenseToCIL.Ops.Label{``0}})">
+<summary>
+ [_, n --&gt; _] Jump to nth label in table, or fall through to next instruction if n is out of range.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.sub'ovf'un``1">
+<summary>
+ [_, value1, value2 --&gt; _, result] Subtract unsigned native value2 from value1 with overflow check, returning a new value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.sub'ovf``1">
+<summary>
+ [_, value1, value2 --&gt; _, result] Subtract native value2 from value1 with overflow check, returning a new value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.sub``1">
+<summary>
+ [_, value1, value2 --&gt; _, result] Subtract value2 from value1, returning a new value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.stsfld``1(System.Reflection.FieldInfo)">
+<summary>
+ [_, val --&gt; _,] Replace the value of `field` with val.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.stobj``1(System.Type)">
+<summary>
+ [_, dest, src --&gt; _,] Store a value of type `ty` at an address.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.stloc``1(System.Reflection.Emit.LocalBuilder)">
+<summary>
+ [_, value --&gt; _] Pop a value from stack into local variable `local`.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.stind'ref``1">
+<summary>
+ [_, addr, val --&gt; _] Store value of type object reference into memory at address.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.stind'r8``1">
+<summary>
+ [_, addr, val --&gt; _] Store value of type float64 into memory at address.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.stind'r4``1">
+<summary>
+ [_, addr, val --&gt; _] Store value of type float32 into memory at address.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.stind'i8``1">
+<summary>
+ [_, addr, val --&gt; _] Store value of type int64 into memory at address.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.stind'i4``1">
+<summary>
+ [_, addr, val --&gt; _] Store value of type int32 into memory at address.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.stind'i2``1">
+<summary>
+ [_, addr, val --&gt; _] Store value of type int16 into memory at address.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.stind'i1``1">
+<summary>
+ [_, addr, val --&gt; _] Store value of type int8 into memory at address.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.stind'i``1">
+<summary>
+ [_, addr, val --&gt; _] Store value of type native int into memory at address.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.stfld``1(System.Reflection.FieldInfo)">
+<summary>
+ [_, obj, value --&gt; _,] Replace the value of `field` of the object obj with value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.stelem'ref``1">
+<summary>
+ [_, array, index, value, --&gt; _] Replace array element at index with the object reference on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.stelem'r8``1">
+<summary>
+ [_, array, index, value, --&gt; _] Replace array element at index with the float64 on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.stelem'r4``1">
+<summary>
+ [_, array, index, value, --&gt; _] Replace array element at index with the float32 on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.stelem'i8``1">
+<summary>
+ [_, array, index, value, --&gt; _] Replace array element at index with the int64 on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.stelem'i4``1">
+<summary>
+ [_, array, index, value, --&gt; _] Replace array element at index with the int32 on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.stelem'i2``1">
+<summary>
+ [_, array, index, value, --&gt; _] Replace array element at index with the int16 on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.stelem'i1``1">
+<summary>
+ [_, array, index, value, --&gt; _] Replace array element at index with the int8 on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.stelem'i``1">
+<summary>
+ [_, array, index, value, --&gt; _] Replace array element at index with the native int on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.stelem``1(System.Type)">
+<summary>
+ [_, array, index, value, --&gt; _] Replace array element at index with the value on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.starg``1(System.Int32)">
+<summary>
+ [_, value --&gt; _,] Store value to the argument numbered num.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.sizeof``1(System.Type)">
+<summary>
+ [_, --&gt; _, size] Push the size, in bytes, of `valueTy` as an unsigned int32.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.shr'un``1">
+<summary>
+ [_, value, shiftAmount --&gt; _, result] Shift an integer right (shift in zero), return an integer.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.shr``1">
+<summary>
+ [_, value, shiftAmount --&gt; _, result] Shift an integer right (shift in sign), return an integer.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.shl``1">
+<summary>
+ [_, value, shiftAmount --&gt; _, result] Shift an integer left (shifting in zeros), return an integer.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.rethrow``1">
+<summary>
+ [_ --&gt; _] Rethrow the current exception.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ret'void``1">
+<summary>
+ [ --&gt; ] Return from method without a value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ret``1">
+<summary>
+ [ retVal --&gt; ] Return from method with a value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.rem'un``1">
+<summary>
+ [_, value1, value2 --&gt; _, result] Remainder when dividing one unsigned value by another.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.rem``1">
+<summary>
+ [_, value1, value2 --&gt; _, result] Remainder when dividing one value by another.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.refanyval``1(System.Type)">
+<summary>
+ [_, TypedRef --&gt; _, address] Push the address stored in a typed reference.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.refanytype``1">
+<summary>
+ [_, TypedRef --&gt; _, type] Push the type token stored in a typed reference.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.pop``1">
+<summary>
+ [_, value --&gt; _] Pop value from the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.nop``1">
+<summary>
+ [_, --&gt; _,] No-op.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.newarr``1(System.Type)">
+<summary>
+ [_, numElems --&gt; _, array] Create a new array with elements of type `elemTy`.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.neg``1">
+<summary>
+ [_, value --&gt; _, result] Negate value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.mul'ovf'un``1">
+<summary>
+ [_, value1, value2 --&gt; _, result] Multiply unsigned integer values with overflow check.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.mul'ovf``1">
+<summary>
+ [_, value1, value2 --&gt; _, result] Multiply signed integer values with overflow check.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.mul``1">
+<summary>
+ [_, value1, value2 --&gt; _, result] Multiply values.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.mkrefany``1(System.Type)">
+<summary>
+ [_, ptr --&gt; _, typedRef] Push a typed reference to ptr of type `ty` onto the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.localloc``1">
+<summary>
+ [size --&gt; address] Allocate space from the local memory pool.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.leave's``2(LicenseToCIL.Ops.Label{LicenseToCIL.Stack.E})">
+<summary>
+ [--&gt; _] Exit a protected region of code, short form.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.leave``2(LicenseToCIL.Ops.Label{LicenseToCIL.Stack.E})">
+<summary>
+ [--&gt; _] Exit a protected region of code.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldvirtftn``1(System.Reflection.MethodInfo)">
+<summary>
+ [_, object --&gt; _, ftn] Push address of virtual method `meth` on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldtoken``1(System.Type)">
+<summary>
+ [_ --&gt; _, RuntimeHandle] Push runtime handle to a type on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldstr``1(System.String)">
+<summary>
+ [_, --&gt; _, str] Push a literal string on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldsflda``1(System.Reflection.FieldInfo)">
+<summary>
+ [_, --&gt; _, value] Push the address of `field` on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldsfld``1(System.Reflection.FieldInfo)">
+<summary>
+ [_, --&gt; _, value] Push the value of `field` on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldobj``1(System.Type)">
+<summary>
+ [_, src --&gt; _, val] Copy the value stored at address src to the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldnull``1">
+<summary>
+ [_ --&gt; _, null value] Push a null reference on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldloca``1(System.Reflection.Emit.LocalBuilder)">
+<summary>
+ [_ --&gt; _, value] Load the address of `local` on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldloc``1(System.Reflection.Emit.LocalBuilder)">
+<summary>
+ [_ --&gt; _, value] Load the value of `local` on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldlen``1">
+<summary>
+ [_, array --&gt; _, length] Push the length (of type native unsigned int) of array on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldind'u4``1">
+<summary>
+ [_, addr --&gt; _, value] Indirect load value of type uint32 as int32 on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldind'u2``1">
+<summary>
+ [_, addr --&gt; _, value] Indirect load value of type uint16 as int32 on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldind'u1``1">
+<summary>
+ [_, addr --&gt; _, value] Indirect load value of type uint8 as int32 on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldind'ref``1">
+<summary>
+ [_, addr --&gt; _, value] Indirect load value of type object ref as O on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldind'r8``1">
+<summary>
+ [_, addr --&gt; _, value] Indirect load value of type float64 as F on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldind'r4``1">
+<summary>
+ [_, addr --&gt; _, value] Indirect load value of type float32 as F on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldind'i8``1">
+<summary>
+ [_, addr --&gt; _, value] Indirect load value of type int64 as int64 on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldind'i4``1">
+<summary>
+ [_, addr --&gt; _, value] Indirect load value of type int32 as int32 on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldind'i2``1">
+<summary>
+ [_, addr --&gt; _, value] Indirect load value of type int16 as int32 on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldind'i1``1">
+<summary>
+ [_, addr --&gt; _, value] Indirect load value of type int8 as int32 on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldind'i``1">
+<summary>
+ [_, addr --&gt; _, value] Indirect load value of type native int as native int on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldftn``1(System.Reflection.MethodInfo)">
+<summary>
+ [_ --&gt; _, ftn] Push a pointer to a method referenced by method `meth` on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldflda``1(System.Reflection.FieldInfo)">
+<summary>
+ [_, obj --&gt; _, address] Push the address of `field` of object obj on the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldfld``1(System.Reflection.FieldInfo)">
+<summary>
+ [_, obj --&gt; _, value] Push the value of `field` of object (or value type) obj, onto the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldelema``1(System.Type)">
+<summary>
+ [_, array, index --&gt; _, address] Load the address of element at index onto the top of the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldelem'u4``1">
+<summary>
+ [_, array, index --&gt; _, value] Load the uint32 at index onto the top of the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldelem'u2``1">
+<summary>
+ [_, array, index --&gt; _, value] Load the uint16 at index onto the top of the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldelem'u1``1">
+<summary>
+ [_, array, index --&gt; _, value] Load the uint8 at index onto the top of the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldelem'ref``1">
+<summary>
+ [_, array, index --&gt; _, value] Load the object reference at index onto the top of the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldelem'r8``1">
+<summary>
+ [_, array, index --&gt; _, value] Load the float64 at index onto the top of the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldelem'r4``1">
+<summary>
+ [_, array, index --&gt; _, value] Load the float32 at index onto the top of the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldelem'i8``1">
+<summary>
+ [_, array, index --&gt; _, value] Load the int64 at index onto the top of the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldelem'i4``1">
+<summary>
+ [_, array, index --&gt; _, value] Load the int32 at index onto the top of the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldelem'i2``1">
+<summary>
+ [_, array, index --&gt; _, value] Load the int16 at index onto the top of the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldelem'i1``1">
+<summary>
+ [_, array, index --&gt; _, value] Load the int8 at index onto the top of the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldelem'i``1">
+<summary>
+ [_, array, index --&gt; _, value] Load the native integer at index onto the top of the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldelem``1(System.Type)">
+<summary>
+ [_, array, index --&gt; _, value] Load the element at index onto the top of the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldc'r8``1(System.Double)">
+<summary>
+ [_ --&gt; _, value] Load float64 value onto the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldc'r4``1(System.Single)">
+<summary>
+ [_ --&gt; _, value] Load float32 value onto the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldc'i8``1(System.Int64)">
+<summary>
+ [_ --&gt; _, value] Load int64 value onto the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldc'i4``1(System.Int32)">
+<summary>
+ [_ --&gt; _, value] Load int32 value onto the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldarga``1(System.Int32)">
+<summary>
+ [_ --&gt; _, addr] Load address of argument numbered num onto the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ldarg``1(System.Int32)">
+<summary>
+ [_ --&gt; _, arg] Load argument numbered num onto the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.jmp(System.Reflection.MethodInfo)">
+<summary>
+ [_ --&gt; _] Exit current method and jump to the specified method.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.isinst``1(System.Type)">
+<summary>
+ [_, obj --&gt; _, result] Test if obj is an instance of `ty`, returning null or an instance of `ty`.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.initobj``1(System.Type)">
+<summary>
+ [_, dest --&gt; _,] Initialize the value at address dest.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.initblk``1">
+<summary>
+ [_, addr, value, size --&gt; _] Set all bytes in a block of memory to a given byte value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.endfinally``1">
+<summary>
+ [_ --&gt; _] End finally clause of an exception block.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.endfilter``1">
+<summary>
+ [_, value --&gt; _] End an exception handling filter clause.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.dup``1">
+<summary>
+ [_, value --&gt; _, value, value] Duplicate the value on the top of the stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.div'un``1">
+<summary>
+ [_, value1, value2 --&gt; _, result] Divide two values, unsigned, returning a quotient.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.div``1">
+<summary>
+ [_, value1, value2 --&gt; _, result] Divide two values to return a quotient or floating-point result.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.cpobj``1(System.Type)">
+<summary>
+ [_, dest, src --&gt; _,] Copy a value type from src to dest.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.cpblk``1">
+<summary>
+ [_, destaddr, srcaddr, size --&gt; _] Copy data from memory to memory.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'u8``1">
+<summary>
+ [_, value --&gt; _, result] Convert to uint64, pushing int64 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'u4``1">
+<summary>
+ [_, value --&gt; _, result] Convert to uint32, pushing int32 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'u2``1">
+<summary>
+ [_, value --&gt; _, result] Convert to uint16, pushing int32 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'u1``1">
+<summary>
+ [_, value --&gt; _, result] Convert to uint8, pushing int32 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'u``1">
+<summary>
+ [_, value --&gt; _, result] Convert to native unsigned int, pushing native int on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'r8``1">
+<summary>
+ [_, value --&gt; _, result] Convert to float64, pushing float64 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'r4``1">
+<summary>
+ [_, value --&gt; _, result] Convert to float32, pushing float32 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'r'un``1">
+<summary>
+ [_, value --&gt; _, result] Convert unsigned to float32, pushing float32 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'ovf'u8'un``1">
+<summary>
+ [_, value --&gt; _, result] Convert unsigned to uint64 with overflow check, pushing int64 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'ovf'u8``1">
+<summary>
+ [_, value --&gt; _, result] Convert to uint64 with overflow check, pushing int64 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'ovf'u4'un``1">
+<summary>
+ [_, value --&gt; _, result] Convert unsigned to uint32 with overflow check, pushing int32 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'ovf'u4``1">
+<summary>
+ [_, value --&gt; _, result] Convert to uint32 with overflow check, pushing int32 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'ovf'u2'un``1">
+<summary>
+ [_, value --&gt; _, result] Convert unsigned to uint16 with overflow check, pushing int32 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'ovf'u2``1">
+<summary>
+ [_, value --&gt; _, result] Convert to uint16 with overflow check, pushing int32 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'ovf'u1'un``1">
+<summary>
+ [_, value --&gt; _, result] Convert unsigned to uint8 with overflow check, pushing int32 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'ovf'u1``1">
+<summary>
+ [_, value --&gt; _, result] Convert to uint8 with overflow check, pushing int32 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'ovf'u'un``1">
+<summary>
+ [_, value --&gt; _, result] Convert unsigned to native unsigned int with overflow check, pushing native int on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'ovf'u``1">
+<summary>
+ [_, value --&gt; _, result] Convert to native unsigned int with overflow check, pushing native int on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'ovf'i8'un``1">
+<summary>
+ [_, value --&gt; _, result] Convert unsigned to int64 with overflow check, pushing int64 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'ovf'i8``1">
+<summary>
+ [_, value --&gt; _, result] Convert to int64 with overflow check, pushing int64 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'ovf'i4'un``1">
+<summary>
+ [_, value --&gt; _, result] Convert unsigned to int32 with overflow check, pushing int32 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'ovf'i4``1">
+<summary>
+ [_, value --&gt; _, result] Convert to int16 with overflow check, pushing int32 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'ovf'i2'un``1">
+<summary>
+ [_, value --&gt; _, result] Convert unsigned to int16 with overflow check, pushing int32 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'ovf'i2``1">
+<summary>
+ [_, value --&gt; _, result] Convert to int16 with overflow check, pushing int32 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'ovf'i1'un``1">
+<summary>
+ [_, value --&gt; _, result] Convert unsigned to int8 with overflow check, pushing int32 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'ovf'i1``1">
+<summary>
+ [_, value --&gt; _, result] Convert to int8 with overflow check, pushing int32 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'ovf'i'un``1">
+<summary>
+ [_, value --&gt; _, result] Convert unsigned to native int with overflow check, pushing native int on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'ovf'i``1">
+<summary>
+ [_, value --&gt; _, result] Convert to native int with overflow check, pushing native int on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'i8``1">
+<summary>
+ [_, value --&gt; _, result] Convert to int64, pushing int64 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'i4``1">
+<summary>
+ [_, value --&gt; _, result] Convert to int32, pushing int32 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'i2``1">
+<summary>
+ [_, value --&gt; _, result] Convert to int16, pushing int32 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'i1``1">
+<summary>
+ [_, value --&gt; _, result] Convert to int8, pushing int32 on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.conv'i``1">
+<summary>
+ [_, value --&gt; _, result] Convert to native int, pushing native int on stack.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.constrained``1(System.Type)">
+<summary>
+ [ ptr, arg1, ... argN --&gt; _, ptr, arg1, ... argN ] Constrain following `callvirt` to call method of `ty`.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.clt'un``1">
+<summary>
+ [_, value1, value2 --&gt; _, result] Push 1 (of type int32) if value1 &lt; value2, unsigned or unordered.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.clt``1">
+<summary>
+ [_, value1, value2 --&gt; _, result] Push 1 (of type int32) if value1 &lt; value2, else push 0.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ckfinite``1">
+<summary>
+ [_, value --&gt; _, value] Throw ArithmeticException if value is not a finite number.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.cgt'un``1">
+<summary>
+ [_, value1, value2 --&gt; _, result] Push 1 (of type int32) if value1 &gt; value2, unsigned or unordered.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.cgt``1">
+<summary>
+ [_, value1, value2 --&gt; _, result] Push 1 (of type int32) if value1 &gt; value2, else push 0.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ceq``1">
+<summary>
+ [_, value1, value2 --&gt; _, result] Push 1 (of type int32) if value1 equals value2, else push 0.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.castclass``1(System.Type)">
+<summary>
+ [_, obj --&gt; _, obj2] Cast obj to `toTy`.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.brtrue's``1(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ [_, value --&gt; _] Branch to target if value is non-zero or non-null, short form.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.brtrue``1(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ [_, value --&gt; _] Branch to target if value is non-zero or non-null.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.brfalse's``1(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ [_, value --&gt; _] Branch to target if value is zero or null, short form.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.brfalse``1(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ [_, value --&gt; _] Branch to target if value is zero or null.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.br's``2(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ [_ --&gt; _] Branch unconditionally to target, short form.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.box'val``1(System.Type)">
+<summary>
+ [_, val --&gt; _, obj] Convert a boxable value of type `valueTy` to its boxed form.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.bne'un's``1(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ [_, value1, value2 --&gt; _] Branch to target if unequal or unordered, short form.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.bne'un``1(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ [_, value1, value2 --&gt; _] Branch to target if unequal or unordered.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.blt'un's``1(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ [_, value1, value2 --&gt; _] Branch to target if less than (unsigned or unordered), short form.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.blt'un``1(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ [_, value1, value2 --&gt; _] Branch to target if less than (unsigned or unordered).
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.blt's``1(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ [_, value1, value2 --&gt; _] Branch to target if less than, short form.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.blt``1(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ [_, value1, value2 --&gt; _] Branch to target if less than.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ble'un's``1(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ [_, value1, value2 --&gt; _] Branch to target if less than or equal to (unsigned or unordered), short form.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ble'un``1(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ [_, value1, value2 --&gt; _] Branch to target if less than or equal to (unsigned or unordered).
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ble's``1(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ [_, value1, value2 --&gt; _] Branch to target if less than or equal to, short form.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.ble``1(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ [_, value1, value2 --&gt; _] Branch to target if less than or equal to.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.bit'xor``1">
+<summary>
+ [_, value1, value2 --&gt; _, result] Bitwise XOR of integer values, returns an integer.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.bit'or``1">
+<summary>
+ [_, value1, value2 --&gt; _, result] Bitwise OR of two integer values, returns an integer.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.bit'not``1">
+<summary>
+ [_, value --&gt; _, result] Bitwise complement of an integer value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.bit'and``1">
+<summary>
+ [_, value1, value2 --&gt; _, result] Bitwise AND of two integer values, returns an integer.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.bgt'un's``1(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ [_, value1, value2 --&gt; _] Branch to target if greater than (unsigned or unordered), short form.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.bgt'un``1(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ [_, value1, value2 --&gt; _] Branch to target if greater than (unsigned or unordered).
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.bgt's``1(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ [_, value1, value2 --&gt; _] Branch to target if greater than, short form.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.bgt``1(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ [_, value1, value2 --&gt; _] Branch to target if greater than.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.bge'un's``1(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ [_, value1, value2 --&gt; _] Branch to target if greater than or equal to (unsigned or unordered), short form.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.bge'un``1(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ [_, value1, value2 --&gt; _] Branch to target if greater than or equal to (unsigned or unordered).
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.bge's``1(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ [_, value1, value2 --&gt; _] Branch to target if greater than or equal to, short form.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.bge``1(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ [_, value1, value2 --&gt; _] Branch to target if greater than or equal to.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.beq's``1(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ [_, value1, value2 --&gt; _] Branch to target if equal, short form.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.beq``1(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ [_, value1, value2 --&gt; _] Branch to target if equal.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.arglist``1">
+<summary>
+ [_ --&gt; _, argListHandle] Return argument list handle for the current method.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.add'ovf'un``1">
+<summary>
+ [_, value1, value2 --&gt; _, result] Add unsigned integer values with overflow check.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.add'ovf``1">
+<summary>
+ [_, value1, value2 --&gt; _, result] Add signed integer values with overflow check.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.add``1">
+<summary>
+ [_, value1, value2 --&gt; _, result] Add two values, returning a new value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.newobj5``1(System.Reflection.ConstructorInfo)">
+<summary>
+ [_, arg0, arg1, arg2, arg3, arg4 -&gt; _, object] Call constructor taking 5 arguments.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.newobj4``1(System.Reflection.ConstructorInfo)">
+<summary>
+ [_, arg0, arg1, arg2, arg3 -&gt; _, object] Call constructor taking 4 arguments.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.newobj3``1(System.Reflection.ConstructorInfo)">
+<summary>
+ [_, arg0, arg1, arg2 -&gt; _, object] Call constructor taking 3 arguments.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.newobj2``1(System.Reflection.ConstructorInfo)">
+<summary>
+ [_, arg0, arg1 -&gt; _, object] Call constructor taking 2 arguments.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.newobj1``1(System.Reflection.ConstructorInfo)">
+<summary>
+ [_, arg0 -&gt; _, object] Call constructor taking 1 argument.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.newobj0``1(System.Reflection.ConstructorInfo)">
+<summary>
+ [_ -&gt; _, object] Call constructor taking zero arguments.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.newobj'x``2(System.Reflection.ConstructorInfo)">
+<summary>
+ [? -&gt; ?] Call constructor taking an unknown number of arguments.
+ Not recommended -- favor exact variants.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.callvirt5'void``1(System.Reflection.MethodInfo)">
+<summary>
+ [_, obj, arg0, arg1, arg2, arg3 -&gt; _] Call virtual void method taking 5 arguments.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.callvirt4'void``1(System.Reflection.MethodInfo)">
+<summary>
+ [_, obj, arg0, arg1, arg2 -&gt; _] Call virtual void method taking 4 arguments.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.callvirt3'void``1(System.Reflection.MethodInfo)">
+<summary>
+ [_, obj, arg0, arg1 -&gt; _] Call virtual void method taking 3 arguments.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.callvirt2'void``1(System.Reflection.MethodInfo)">
+<summary>
+ [_, obj, arg0 -&gt; _] Call virtual void method taking 2 arguments.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.callvirt1'void``1(System.Reflection.MethodInfo)">
+<summary>
+ [_, obj -&gt; _] Call virtual void method taking 1 (instance) argument.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.callvirt5``1(System.Reflection.MethodInfo)">
+<summary>
+ [_, obj, arg0, arg1, arg2, arg3 -&gt; _, value] Call virtual method taking 5 arguments and returning a value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.callvirt4``1(System.Reflection.MethodInfo)">
+<summary>
+ [_, obj, arg0, arg1, arg2 -&gt; _, value] Call virtual method taking 4 arguments and returning a value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.callvirt3``1(System.Reflection.MethodInfo)">
+<summary>
+ [_, obj, arg0, arg1 -&gt; _, value] Call virtual method taking 3 arguments and returning a value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.callvirt2``1(System.Reflection.MethodInfo)">
+<summary>
+ [_, obj, arg0 -&gt; _, value] Call virtual method taking 2 arguments and returning a value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.callvirt1``1(System.Reflection.MethodInfo)">
+<summary>
+ [_, obj -&gt; _, value] Call virtual method taking 1 (instance) argument and returning a value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.callvirt'x``2(System.Reflection.MethodInfo)">
+<summary>
+ [? -&gt; ?] Indirectly call virtual method taking an unknown number of arguments.
+ Not recommended -- favor exact variants.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.calli5'void``1">
+<summary>
+ [_, arg0, arg1, arg2, arg3, arg4, ptr -&gt; _] Indirectly call void method taking 5 arguments.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.calli4'void``1">
+<summary>
+ [_, arg0, arg1, arg2, arg3, ptr -&gt; _] Indirectly call void method taking 4 arguments.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.calli3'void``1">
+<summary>
+ [_, arg0, arg1, arg2, ptr -&gt; _] Indirectly call void method taking 3 arguments.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.calli2'void``1">
+<summary>
+ [_, arg0, arg1, ptr -&gt; _] Indirectly call void method taking 2 arguments.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.calli1'void``1">
+<summary>
+ [_, arg0, ptr -&gt; _] Indirectly call void method taking 1 argument.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.calli0'void``1">
+<summary>
+ [_, ptr -&gt; _] Indirectly call void method taking zero arguments.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.calli5``1">
+<summary>
+ [_, arg0, arg1, arg2, arg3, arg4, ptr -&gt; _, value] Indirectly call method taking 5 arguments and returning a value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.calli4``1">
+<summary>
+ [_, arg0, arg1, arg2, arg3, ptr -&gt; _, value] Indirectly call method taking 4 arguments and returning a value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.calli3``1">
+<summary>
+ [_, arg0, arg1, arg2, ptr -&gt; _, value] Indirectly call method taking 3 arguments and returning a value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.calli2``1">
+<summary>
+ [_, arg0, arg1, ptr -&gt; _, value] Indirectly call method taking 2 arguments and returning a value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.calli1``1">
+<summary>
+ [_, arg0, ptr -&gt; _, value] Indirectly call method taking 1 argument and returning a value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.calli0``1">
+<summary>
+ [_, ptr -&gt; _, value] Indirectly call method taking zero arguments and returning a value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.calli'x``2">
+<summary>
+ [?, ptr -&gt; ?] Indirectly call method taking an unknown number of arguments.
+ Not recommended -- favor exact variants.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.call6'void``1(System.Reflection.MethodInfo)">
+<summary>
+ [_, arg0, arg1, arg2, arg3, arg4, arg5 -&gt; _] Call void method taking 6 arguments.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.call5'void``1(System.Reflection.MethodInfo)">
+<summary>
+ [_, arg0, arg1, arg2, arg3, arg4 -&gt; _] Call void method taking 5 arguments.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.call4'void``1(System.Reflection.MethodInfo)">
+<summary>
+ [_, arg0, arg1, arg2, arg3 -&gt; _] Call void method taking 4 arguments.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.call3'void``1(System.Reflection.MethodInfo)">
+<summary>
+ [_, arg0, arg1, arg2 -&gt; _] Call void method taking 3 arguments.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.call2'void``1(System.Reflection.MethodInfo)">
+<summary>
+ [_, arg0, arg1 -&gt; _] Call void method taking 2 arguments.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.call1'void``1(System.Reflection.MethodInfo)">
+<summary>
+ [_, arg0 -&gt; _] Call void method taking 1 argument.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.call0'void``1(System.Reflection.MethodInfo)">
+<summary>
+ [_ -&gt; _] Call void method taking zero arguments.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.call6``1(System.Reflection.MethodInfo)">
+<summary>
+ [_, arg0, arg1, arg2, arg3, arg4, arg5 -&gt; _, value] Call method taking 6 arguments and returning a value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.call5``1(System.Reflection.MethodInfo)">
+<summary>
+ [_, arg0, arg1, arg2, arg3, arg4 -&gt; _, value] Call method taking 5 arguments and returning a value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.call4``1(System.Reflection.MethodInfo)">
+<summary>
+ [_, arg0, arg1. arg2, arg3 -&gt; _, value] Call method taking 4 arguments and returning a value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.call3``1(System.Reflection.MethodInfo)">
+<summary>
+ [_, arg0, arg1, arg2 -&gt; _, value] Call method taking 3 arguments and returning a value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.call2``1(System.Reflection.MethodInfo)">
+<summary>
+ [_, arg0, arg1 -&gt; _, value] Call method taking 2 arguments and returning a value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.call1``1(System.Reflection.MethodInfo)">
+<summary>
+ [_, arg0 -&gt; _, value] Call method taking 1 argument and returning a value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.call0``1(System.Reflection.MethodInfo)">
+<summary>
+ [_ -&gt; _, value] Call method taking zero arguments and returning a value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.call'x``2(System.Reflection.MethodInfo)">
+<summary>
+ [? -&gt; ?] Call method taking an unknown number of arguments.
+ Not recommended -- favor exact variants.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.mark``1(LicenseToCIL.Ops.Label{``0})">
+<summary>
+ Mark the position of a label.
+</summary>
+</member>
+<member name="P:LicenseToCIL.Ops.deflabel">
+<summary>
+ Define a new label, e.g. `let! lbl = deflabel`.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.tmplocal(System.Type)">
+<summary>
+ Obtain a temporary local, e.g. `let! loc = tmplocal typeof&lt;int&gt;`.
+ The local may contain an arbitrary previous value.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.deflocal(System.Type)">
+<summary>
+ Define a new local, e.g. `let! loc = deflocal typeof&lt;int&gt;`.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.pretend``2(LicenseToCIL.Stack.S{``0},LicenseToCIL.IL)">
+<summary>
+ Force the stack state to appear as desired to the type checker.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.zero``1">
+<summary>
+ Emit no instructions and retain stack state.
+</summary>
+</member>
+<member name="M:LicenseToCIL.Ops.combine``3(Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.Stack.S{``0},Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.IL,LicenseToCIL.Stack.S{``1}}},Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.Stack.S{``1},Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.IL,LicenseToCIL.Stack.S{``2}}}})">
+<summary>
+ Sequence together two stack operations.
+</summary>
+</member>
+<member name="M:LicenseToCIL.StringSwitch.sensitiveBinary``2(System.Collections.Generic.IEnumerable{System.Tuple{System.String,Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.Stack.S{``0},Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.IL,LicenseToCIL.Stack.S{``1}}}}},Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.Stack.S{``0},Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.IL,LicenseToCIL.Stack.S{``1}}})">
+<summary>
+ Plain old binary search, case-sensitive.
+</summary>
+</member>
+<member name="M:LicenseToCIL.StringSwitch.insensitiveBinary``2(System.Collections.Generic.IEnumerable{System.Tuple{System.String,Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.Stack.S{``0},Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.IL,LicenseToCIL.Stack.S{``1}}}}},Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.Stack.S{``0},Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.IL,LicenseToCIL.Stack.S{``1}}})">
+<summary>
+ Plain old binary search, case-insensitive.
+</summary>
+</member>
+<member name="M:LicenseToCIL.StringSwitch.sensitiveByHash``2(System.Collections.Generic.IEnumerable{System.Tuple{System.String,Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.Stack.S{``0},Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.IL,LicenseToCIL.Stack.S{``1}}}}},Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.Stack.S{``0},Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.IL,LicenseToCIL.Stack.S{``1}}})">
+<summary>
+ Case-sensitively switch on strings.
+</summary>
+</member>
+<member name="M:LicenseToCIL.StringSwitch.insensitiveByHash``2(System.Collections.Generic.IEnumerable{System.Tuple{System.String,Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.Stack.S{``0},Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.IL,LicenseToCIL.Stack.S{``1}}}}},Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.Stack.S{``0},Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.IL,LicenseToCIL.Stack.S{``1}}})">
+<summary>
+ Case-insensitively switch on strings by their hashcodes.
+</summary>
+</member>
+<member name="M:LicenseToCIL.StringSwitch.sensitive``2(System.Collections.Generic.IEnumerable{System.Tuple{System.String,Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.Stack.S{``0},Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.IL,LicenseToCIL.Stack.S{``1}}}}},Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.Stack.S{``0},Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.IL,LicenseToCIL.Stack.S{``1}}})">
+<summary>
+ Case-sensitively switch on strings.
+</summary>
+</member>
+<member name="M:LicenseToCIL.StringSwitch.insensitive``2(System.Collections.Generic.IEnumerable{System.Tuple{System.String,Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.Stack.S{``0},Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.IL,LicenseToCIL.Stack.S{``1}}}}},Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.Stack.S{``0},Microsoft.FSharp.Core.FSharpFunc{LicenseToCIL.IL,LicenseToCIL.Stack.S{``1}}})">
+<summary>
+ Case-insensitively switch on strings.
+</summary>
+</member>
+</members>
+</doc>

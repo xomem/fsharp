@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>Rezoom.SQL.Mapping</name></assembly>
+<members>
+<member name="T:Rezoom.SQL.IScalar`1">
+<summary>
+ Represents a type that is returned from a scalar query.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Command`1">
+<summary>
+ A command which can be expected to produce `&apos;output` when run.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.ResultSets">
+<summary>
+ Represents multiple result sets as the output from a single command.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Command.ResultSetCount">
+<summary>
+ The number of result sets this command will return, if it can be statically determined.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.ConnectionContext.GetConnection(System.String)">
+<summary>
+ Get the open `DbConnection` by name. If it is not already open, open it according to
+ the connection provider (usually via the connection string from App.confg).
+</summary>
+</member>
+<member name="M:Rezoom.SQL.ConnectionContext.Dispose">
+<summary>
+ Close all the open connections.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.ConnectionContext">
+<summary>
+ Opens `DbConnection`s based on connection names.
+ Keeps them cached and open until it is disposed, then closes all its connections.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Migrations.MigrationConfig.LogMigrationRan">
+<summary>
+ Function to call after running a migration. Typically this would write to stdout or a log file.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Migrations.MigrationConfig.AllowRetroactiveMigrations">
+<summary>
+ If true, permit running migrations that have not been run on the database, but are older
+ than other migrations that *have* been run. Typically this would only make sense in development, after
+ merging migrations written by another developer.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Migrations.MigrationConfig.Default">
+<summary>
+ Default migration config. Simple and safe.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Raw">
+<summary>
+ Provides helpers for building raw SQL commands and parameters.
+ This stuff does *NOT* go through RZSQL parsing/typechecking/translation.
+ It should be a last resort for when you absolutely can&apos;t accomplish what you&apos;re doing statically.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Mapping.BlueprintNoKeyAttribute">
+<summary>
+ Indicates that a class has no key properties and should not be de-duplicated.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Mapping.BlueprintColumnNameAttribute">
+<summary>
+ Indicates that a property is represented with a different column name than its own member name.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Mapping.BlueprintKeyAttribute">
+<summary>
+ Marks a property as being part of the primary key of its composite type.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Mapping.BlueprintConstructorAttribute">
+<summary>
+ Marks a constructor as being the one to use when creating entities from blueprints.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Mapping.Blueprint.Output">
+<summary>
+ The type (possibly a collectiont ype) this blueprint specifies how to construct.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Mapping.Cardinality.Many">
+<summary>
+ Carries an element type blueprint and a method converting an ICollection&lt;Builder&lt;ElementType&gt;&gt;
+ to the target collection type.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Mapping.ElementBlueprint.Output">
+<summary>
+ The element type this blueprint specifies how to construct.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Mapping.Primitive.Converter">
+<summary>
+ A method converting an object to the output type.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Mapping.Composite.Columns">
+<summary>
+ All the columns of this composite type (including the identity, if any).
+ Indexed by name, case insensitive.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Mapping.Composite.Identity">
+<summary>
+ The identity columns for this composite type, if any.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Mapping.Composite.Constructor">
+<summary>
+ The constructor to use when instantiating this composite type.
+ All parameters must be supplied by columns.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Mapping.Column.ReverseRelationship">
+<summary>
+ The column on this column&apos;s type that points to this.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Mapping.Column.Getter">
+<summary>
+ The way to get this column&apos;s value (could be used for analyzing expression trees).
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Mapping.Column.Setter">
+<summary>
+ The way to set this column when initializing an instance of the composite type.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Mapping.Column.Blueprint">
+<summary>
+ The blueprint for this column&apos;s type.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Mapping.Column.Name">
+<summary>
+ The name of this column. This is the basename of the SQL column name that
+ will represent it. This should always be treated case-insensitively.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Mapping.Setter.SetProperty">
+<summary>
+ We initialize this column by setting a property post-construction.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Mapping.Setter.SetField">
+<summary>
+ We initialize this column by setting a field post-construction.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Mapping.Setter.SetConstructorParameter">
+<summary>
+ We initialize this column by passing it to the composite&apos;s constructor.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Mapping.ResultSetProcessor.ProcessRow">
+<summary>
+ Process a single row of the result set.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Mapping.ResultSetProcessor.ObjectGetResult">
+<summary>
+ Obtain the result object after processing *all* result sets.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Mapping.ResultSetProcessor.BeginResultSet(System.Data.IDataReader)">
+<summary>
+ Start processing a result set.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Mapping.CommandFragment.Outdent">
+<summary>
+ Decrease indentation level for following line breaks.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Mapping.CommandFragment.Indent">
+<summary>
+ Increase indentation level for following line breaks.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Mapping.CommandFragment.LineBreak">
+<summary>
+ Whitespace, preferably a line break.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Mapping.CommandFragment.Whitespace">
+<summary>
+ At least one unit of whitespace.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Mapping.CommandFragment.InlineParameter">
+<summary>
+ Directly specifies parameter value.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Mapping.CommandFragment.Parameter">
+<summary>
+ References parameter by index.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Mapping.CommandFragment.CommandText">
+<summary>
+ Chunk of raw SQL text.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Mapping.CommandFragment.LocalName">
+<summary>
+ A name which should be localized to this command for batching.
+ For example, if the command creates a temp table, the real name should be chosen dynamically
+ so it doesn&apos;t break when the command is batched with others that create the same-named temp table.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Mapping.CommandFragment.Stringize(System.String,System.String,System.Collections.Generic.IEnumerable{Rezoom.SQL.Mapping.CommandFragment})">
+<summary>
+ Converts a sequence of fragments *without parameters* to a string.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Mapping.BlueprintModule.pickIdentity(System.Type,System.Collections.Generic.IReadOnlyDictionary{System.String,Rezoom.SQL.Mapping.Column})">
+<summary>
+ Pick, in order of most to least preferred:
+ - the column whose getter is annotated with [&lt;BlueprintKey&gt;] 
+ - the column named &quot;ID&quot;
+ - the column named &quot;{TypeName}ID&quot;
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Mapping.BlueprintModule.pickConstructor(System.Type)">
+<summary>
+ Get the constructor that the blueprint for `ty` should use.
+ This is simply the constructor with the most parameters,
+ unless there is a constructor with `[&lt;BlueprintConstructor&gt;]`,
+ in which case that one will be used.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Mapping.CodeGeneration.RowConversionMethod">
+<summary>
+ Takes `Row` and `ColumnInfo` and pushes a value of whatever type if being converted to.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Mapping.CodeGeneration.ConversionMethod">
+<summary>
+ A conversion that assumes an obj is on the stack, and pushes a value of whatever type is being
+ converted to (depends on the context in which you see the conversion).
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Asynchronous.Extensions.ExecuteTryExactlyOne``2(Rezoom.SQL.Command{``0},Rezoom.SQL.ConnectionContext,System.Threading.CancellationToken)">
+<summary>
+ Execute the command on a connection and return the optional first and only row of its single result set.
+ If the command returns more than 1 row, this throws an exception.
+ The connection is obtained from the given `ConnectionContext` according to the command&apos;s `ConnectionName`
+ property.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Asynchronous.Extensions.ExecuteTryExactlyOne``2(Rezoom.SQL.Command{``0},System.Data.Common.DbConnection,System.Threading.CancellationToken)">
+<summary>
+ Execute the command on a connection and return the optional first and only row of its single result set.
+ If the command returns more than 1 row, this throws an exception.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Asynchronous.Extensions.ExecuteTryExactlyOne``2(Rezoom.SQL.Command{``0},Rezoom.SQL.ConnectionContext)">
+<summary>
+ Execute the command on a connection and return the optional first and only row of its single result set.
+ If the command returns more than 1 row, this throws an exception.
+ The connection is obtained from the given `ConnectionContext` according to the command&apos;s `ConnectionName`
+ property.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Asynchronous.Extensions.ExecuteTryExactlyOne``2(Rezoom.SQL.Command{``0},System.Data.Common.DbConnection)">
+<summary>
+ Execute the command on a connection and return the optional first and only row of its single result set.
+ If the command returns more than 1 row, this throws an exception.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Asynchronous.Extensions.ExecuteScalar``2(Rezoom.SQL.Command{``0},Rezoom.SQL.ConnectionContext,System.Threading.CancellationToken)">
+<summary>
+ Execute the command on a connection and return its scalar result.
+ The connection is obtained from the given `ConnectionContext` according to the command&apos;s `ConnectionName`
+ property.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Asynchronous.Extensions.ExecuteScalar``2(Rezoom.SQL.Command{``0},System.Data.Common.DbConnection,System.Threading.CancellationToken)">
+<summary>
+ Execute the command on a connection and return its scalar result.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Asynchronous.Extensions.ExecuteScalar``2(Rezoom.SQL.Command{``0},Rezoom.SQL.ConnectionContext)">
+<summary>
+ Execute the command on a connection and return its scalar result.
+ The connection is obtained from the given `ConnectionContext` according to the command&apos;s `ConnectionName`
+ property.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Asynchronous.Extensions.ExecuteScalar``2(Rezoom.SQL.Command{``0},System.Data.Common.DbConnection)">
+<summary>
+ Execute the command on a connection and return its scalar result.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Asynchronous.Extensions.ExecuteExactlyOne``2(Rezoom.SQL.Command{``0},Rezoom.SQL.ConnectionContext,System.Threading.CancellationToken)">
+<summary>
+ Execute the command on a connection and return the first and only row of its single result set.
+ If the command returns no rows or more than 1 row, this throws an exception.
+ The connection is obtained from the given `ConnectionContext` according to the command&apos;s `ConnectionName`
+ property.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Asynchronous.Extensions.ExecuteExactlyOne``2(Rezoom.SQL.Command{``0},System.Data.Common.DbConnection,System.Threading.CancellationToken)">
+<summary>
+ Execute the command on a connection and return the first and only row of its single result set.
+ If the command returns no rows or more than 1 row, this throws an exception.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Asynchronous.Extensions.ExecuteExactlyOne``2(Rezoom.SQL.Command{``0},Rezoom.SQL.ConnectionContext)">
+<summary>
+ Execute the command on a connection and return the first and only row of its single result set.
+ If the command returns no rows or more than 1 row, this throws an exception.
+ The connection is obtained from the given `ConnectionContext` according to the command&apos;s `ConnectionName`
+ property.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Asynchronous.Extensions.ExecuteExactlyOne``2(Rezoom.SQL.Command{``0},System.Data.Common.DbConnection)">
+<summary>
+ Execute the command on a connection and return the first and only row of its single result set.
+ If the command returns no rows or more than 1 row, this throws an exception.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Asynchronous.Extensions.Execute``1(Rezoom.SQL.Command{``0},Rezoom.SQL.ConnectionContext,System.Threading.CancellationToken)">
+<summary>
+ Execute the command on a connection and return its result sets.
+ The connection is obtained from the given `ConnectionContext` according to the command&apos;s `ConnectionName`
+ property.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Asynchronous.Extensions.Execute``1(Rezoom.SQL.Command{``0},System.Data.Common.DbConnection,System.Threading.CancellationToken)">
+<summary>
+ Execute the command on a connection and return its result sets.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Asynchronous.Extensions.Execute``1(Rezoom.SQL.Command{``0},Rezoom.SQL.ConnectionContext)">
+<summary>
+ Execute the command on a connection and return its result sets.
+ The connection is obtained from the given `ConnectionContext` according to the command&apos;s `ConnectionName`
+ property.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Asynchronous.Extensions.Execute``1(Rezoom.SQL.Command{``0},System.Data.Common.DbConnection)">
+<summary>
+ Execute the command on a connection and return its result sets.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Asynchronous.Extensions">
+<summary>
+ Extension methods for executing commands asynchronously against a database.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Synchronous.Extensions.ExecuteTryExactlyOne``2(Rezoom.SQL.Command{``0},Rezoom.SQL.ConnectionContext)">
+<summary>
+ Execute the command on a connection and return the optional first and only row of its single result set.
+ If the command returns more than 1 row, this throws an exception.
+ The connection is obtained from the given `ConnectionContext` according to the command&apos;s `ConnectionName`
+ property.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Synchronous.Extensions.ExecuteTryExactlyOne``2(Rezoom.SQL.Command{``0},System.Data.Common.DbConnection)">
+<summary>
+ Execute the command on a connection and return the optional first and only row of its single result set.
+ If the command returns more than 1 row, this throws an exception.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Synchronous.Extensions.ExecuteScalar``2(Rezoom.SQL.Command{``0},Rezoom.SQL.ConnectionContext)">
+<summary>
+ Execute the command on a connection and return its scalar result.
+ The connection is obtained from the given `ConnectionContext` according to the command&apos;s `ConnectionName`
+ property.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Synchronous.Extensions.ExecuteScalar``2(Rezoom.SQL.Command{``0},System.Data.Common.DbConnection)">
+<summary>
+ Execute the command on a connection and return its scalar result.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Synchronous.Extensions.ExecuteExactlyOne``2(Rezoom.SQL.Command{``0},Rezoom.SQL.ConnectionContext)">
+<summary>
+ Execute the command on a connection and return the first and only row of its single result set.
+ If the command returns no rows or more than 1 row, this throws an exception.
+ The connection is obtained from the given `ConnectionContext` according to the command&apos;s `ConnectionName`
+ property.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Synchronous.Extensions.ExecuteExactlyOne``2(Rezoom.SQL.Command{``0},System.Data.Common.DbConnection)">
+<summary>
+ Execute the command on a connection and return the first and only row of its single result set.
+ If the command returns no rows or more than 1 row, this throws an exception.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Synchronous.Extensions.Execute``1(Rezoom.SQL.Command{``0},Rezoom.SQL.ConnectionContext)">
+<summary>
+ Execute the command on a connection and return its result sets.
+ The connection is obtained from the given `ConnectionContext` according to the command&apos;s `ConnectionName`
+ property.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Synchronous.Extensions.Execute``1(Rezoom.SQL.Command{``0},System.Data.Common.DbConnection)">
+<summary>
+ Execute the command on a connection and return its result sets.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Synchronous.Extensions">
+<summary>
+ Extension methods for executing commands synchronously against a database.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Plans.ScalarCommandExtensions.TryExactlyOne``2(Rezoom.SQL.Command{``0})">
+<summary>
+ Create a plan which will execute the command and return its optional single result.
+ If the command returns more than one row, an exception will be thrown.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Plans.ScalarCommandExtensions.Scalar``2(Rezoom.SQL.Command{``0})">
+<summary>
+ Create a plan which will execute the command and return its scalar result.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Plans.ScalarCommandExtensions.Plan``1(Rezoom.SQL.Command{``0})">
+<summary>
+ Create a plan which will execute the command and return its results.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Plans.ScalarCommandExtensions.ExactlyOne``2(Rezoom.SQL.Command{``0})">
+<summary>
+ Create a plan which will execute the command and return its single result.
+ If the command returns no rows or more than one row, an exception will be thrown.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Plans.ScalarCommandExtensions">
+<summary>
+ Extension methods for executing commands as Rezoom plans.
+</summary>
+</member>
+</members>
+</doc>

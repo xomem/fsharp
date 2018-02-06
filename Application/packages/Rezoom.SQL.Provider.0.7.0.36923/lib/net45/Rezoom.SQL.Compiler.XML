@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>Rezoom.SQL.Compiler</name></assembly>
+<members>
+<member name="P:Rezoom.SQL.Compiler.WithSource`1.Value">
+<summary>
+ The syntactic element
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.WithSource`1.Source">
+<summary>
+ The position in source of the syntactic element
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Compiler.WithSource`1">
+<summary>
+ `&apos;a` with the positions in source that it spanned.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Compiler.SourceInfo">
+<summary>
+ The span of (start, end) positions in the source file
+ that a syntactic element occupies.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Compiler.SourcePosition">
+<summary>
+ The position in the source query that a syntactic element appeared.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.UnaryOperator.IsLogicalOperator">
+<summary>
+ True if this operator expects boolean inputs and has a boolean output.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.BinaryOperator.IsLogicalOperator">
+<summary>
+ True if this operator expects boolean inputs and has a boolean output.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.FunctionType.Erased">
+<summary>
+ Whether this function (of one argument) is erased when translated, i.e. `f(x)` becomes just `x`.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.SchemaColumn.PrimaryKey">
+<summary>
+ True if this column is part of the table&apos;s primary key.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.SchemaConstraint.Columns">
+<summary>
+ Which columns this constraint relates to in the table.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.QueryExprInfo`1.StaticRowCount">
+<summary>
+ If we know ahead of time how many rows will be returned, this is that.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.ExprInfo`1.Column">
+<summary>
+ If this expression accesses a column of a table in the schema, the column&apos;s information.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.ExprInfo`1.Function">
+<summary>
+ If this expression is a function call, the function that it calls.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.ExprInfo`1.Idempotent">
+<summary>
+ Does this expression return the same value each time it&apos;s run?
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.ExprInfo`1.Type">
+<summary>
+ The inferred type of this expression.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Compiler.Utilities.State`2">
+<summary>
+ State monad. Useful for complicated transforms on immutable structures.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.Utilities.translatePosition(FParsec.Position)">
+<summary>
+ Translates from FParsec&apos;s position type to our own.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.CoreParser.unquotedName">
+<summary>
+ A plain, unquoted name.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.CoreParser.backtickedName">
+<summary>
+ A name wrapped in backticks (MySQL style)
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.CoreParser.bracketedName">
+<summary>
+ A name wrapped in square brackets (T-SQL style).
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.CoreParser.quotedName">
+<summary>
+ A name wrapped in double quotes (standard SQL).
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.CoreParser.ws1">
+<summary>
+ Required whitespace: 1 or more whitespace units
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.CoreParser.tws``2(``0)">
+<summary>
+ Add optional trailing whitespace to a parser.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.CoreParser.ws">
+<summary>
+ Optional whitespace: 0 or more whitespace units
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.CoreParser.whitespaceUnit">
+<summary>
+ Where whitespace is expected, it can be one of...
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.CoreParser.blockComment">
+<summary>
+ A block comment begins with /* and continues until a trailing */ is found.
+ Nested block comments are not allowed, so additional /* tokens found
+ after the first are ignored.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.CoreParser.lineComment">
+<summary>
+ A line comment begins with -- and continues through the end of the line.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.CoreParser.withSource``1(Microsoft.FSharp.Core.FSharpFunc{FParsec.CharStream{Microsoft.FSharp.Core.Unit},FParsec.Reply{``0}})">
+<summary>
+ Wraps any parser with source information.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.CoreParser.sourcePosition">
+<summary>
+ Get the source position the parser is currently at.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.ModelOps.changeColumnType(Rezoom.SQL.Compiler.WithSource{Rezoom.SQL.Compiler.QualifiedObjectName},Rezoom.SQL.Compiler.WithSource{Rezoom.SQL.Compiler.Name},Rezoom.SQL.Compiler.TypeName)">
+<summary>
+ Change a column&apos;s type.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.ModelOps.dropColumnDefault(Rezoom.SQL.Compiler.WithSource{Rezoom.SQL.Compiler.QualifiedObjectName},Rezoom.SQL.Compiler.WithSource{Rezoom.SQL.Compiler.Name})">
+<summary>
+ Remove the default value from a column.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.ModelOps.dropConstraint(Rezoom.SQL.Compiler.WithSource{Rezoom.SQL.Compiler.QualifiedObjectName},Rezoom.SQL.Compiler.WithSource{Rezoom.SQL.Compiler.Name})">
+<summary>
+ Remove an existing table constraint from the mode.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.ModelOps.dropIndex(Rezoom.SQL.Compiler.WithSource{Rezoom.SQL.Compiler.QualifiedObjectName})">
+<summary>
+ Remove an existing index from the model.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.ModelOps.dropView(Rezoom.SQL.Compiler.WithSource{Rezoom.SQL.Compiler.QualifiedObjectName})">
+<summary>
+ Remove an existing view from the model.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.ModelOps.dropTable(Rezoom.SQL.Compiler.WithSource{Rezoom.SQL.Compiler.QualifiedObjectName})">
+<summary>
+ Remove an existing table from the model.
+ This handles checking for references to the table, and removing reverse references.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.ModelOps.renameTable(Rezoom.SQL.Compiler.WithSource{Rezoom.SQL.Compiler.QualifiedObjectName},Rezoom.SQL.Compiler.WithSource{Rezoom.SQL.Compiler.QualifiedObjectName})">
+<summary>
+ Rename an existing table *and* update other references in the schema that point to it (child objects of the table
+ and foreign keys in other tables). Does not update source code of views, however.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.ModelOps.createView(Rezoom.SQL.Compiler.WithSource{Rezoom.SQL.Compiler.QualifiedObjectName},Rezoom.SQL.Compiler.CreateViewStmt{Microsoft.FSharp.Core.Unit,Microsoft.FSharp.Core.Unit})">
+<summary>
+ Create a view.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.ModelOps.createIndex(Rezoom.SQL.Compiler.WithSource{Rezoom.SQL.Compiler.QualifiedObjectName},Rezoom.SQL.Compiler.WithSource{Rezoom.SQL.Compiler.QualifiedObjectName},Microsoft.FSharp.Collections.FSharpSet{Rezoom.SQL.Compiler.Name})">
+<summary>
+ Create an index to a table. There must not be an existing index with the same name.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.ModelOps.addConstraint(Rezoom.SQL.Compiler.WithSource{Rezoom.SQL.Compiler.QualifiedObjectName},Rezoom.SQL.Compiler.WithSource{Rezoom.SQL.Compiler.Name},Rezoom.SQL.Compiler.SchemaConstraintType,Microsoft.FSharp.Collections.FSharpSet{Rezoom.SQL.Compiler.Name})">
+<summary>
+ Add a table constraint.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.ModelOps.addTableColumn(Rezoom.SQL.Compiler.WithSource{Rezoom.SQL.Compiler.QualifiedObjectName},Rezoom.SQL.Compiler.ModelOps.AddingColumn)">
+<summary>
+ Add a column to an existing table.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.ModelOps.createEmptyTable(Rezoom.SQL.Compiler.WithSource{Rezoom.SQL.Compiler.QualifiedObjectName})">
+<summary>
+ Create a new table with a given name.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.ModelOps.removeObject(Rezoom.SQL.Compiler.WithSource{Rezoom.SQL.Compiler.QualifiedObjectName})">
+<summary>
+ Remove an existing object from the model.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.ModelOps.putObject(Rezoom.SQL.Compiler.WithSource{Rezoom.SQL.Compiler.QualifiedObjectName},Rezoom.SQL.Compiler.SchemaObject)">
+<summary>
+ Create or update an object within an existing schema in the model.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.ModelOps.putSchema(Rezoom.SQL.Compiler.Schema)">
+<summary>
+ Create or update a schema within the model.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Compiler.ModelOps">
+<summary>
+ Fundamental operations on the model.
+ The model should only be modified (it&apos;s immutable, so by modified I mean creation of altered copies)
+ via these primitives. This will ensure invariants like that every foreign key constraint has a reverse foreign
+ key tracking it in the referenced table.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.ComplexModelOps.addColumnDef``2(Rezoom.SQL.Compiler.WithSource{Rezoom.SQL.Compiler.QualifiedObjectName},Rezoom.SQL.Compiler.WithSource{Rezoom.SQL.Compiler.ColumnDef{``0,``1}})">
+<summary>
+ Adds a column def to a table.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.ComplexModelOps.qualify``1(Rezoom.SQL.Compiler.ObjectName{``0})">
+<summary>
+ Qualifies an object name, assuming we are not operating in a temporary context.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.ComplexModelOps.qualifyTemp``1(System.Boolean,Rezoom.SQL.Compiler.ObjectName{``0})">
+<summary>
+ Qualifies an object name, depending on whether we are operating in a temporary context (CREATE TEMP) or not.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.ComplexModelOps.tableConstraint``2(Rezoom.SQL.Compiler.TableConstraint{``0,``1})">
+<summary>
+ Converts an AST column constraint to a schema constraint type and set of encompassed columns.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.ComplexModelOps.columnConstraintType``2(Rezoom.SQL.Compiler.ColumnConstraint{``0,``1})">
+<summary>
+ Converts an AST column constraint to a schema constraint type.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Compiler.ComplexModelOps">
+<summary>
+ These model operations build on the primitives in ModelOps with awareness of higher level SQL statements.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.InferredTypes.InferredSelectScope.CTEVariables">
+<summary>
+ Any CTEs defined by the query.
+ These may be referenced in the &quot;from&quot; clause of the query.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.InferredTypes.InferredSelectScope.Model">
+<summary>
+ The model this select is running against.
+ This includes tables and views that are part of the database, and may be used to resolve
+ table names in the &quot;from&quot; clause of the query.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.InferredTypes.InferredSelectScope.ParentScope">
+<summary>
+ If this scope is that of a subquery, the parent query&apos;s scope can also be used
+ to resolve column and CTE names.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.InferredTypes.InferredSelectScope.ResolveObjectReference(Rezoom.SQL.Compiler.ObjectName{Microsoft.FSharp.Core.Unit},Microsoft.FSharp.Core.FSharpFunc{Rezoom.SQL.Compiler.CreateViewStmt{Microsoft.FSharp.Core.Unit,Microsoft.FSharp.Core.Unit},Rezoom.SQL.Compiler.CreateViewStmt{Rezoom.SQL.Compiler.ObjectInfo{Rezoom.SQL.Compiler.ColumnType},Rezoom.SQL.Compiler.ExprInfo{Rezoom.SQL.Compiler.ColumnType}}})">
+<summary>
+ Resolve a reference to a table which may occur as part of a TableExpr.
+ This will resolve against the database model and CTEs, but not table aliases defined in the FROM clause.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.InferredTypes.InferredSelectScope.ResolveColumnReference(Rezoom.SQL.Compiler.ColumnName{Microsoft.FSharp.Core.Unit})">
+<summary>
+ Resolve a column reference, which may be qualified with a table alias.
+ This resolves against the tables referenced in the FROM clause, and the columns explicitly named
+ in the SELECT clause, if any.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.InferredTypes.InferredFromClause.FromVariables">
+<summary>
+ The tables named in the &quot;from&quot; clause of the query, if any.
+ These are keyed on the alias of the table, if any, or the table name.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.InferredTypes.ITypeInferenceContext.Unify(Rezoom.SQL.Compiler.SourceInfo,Rezoom.SQL.Compiler.InferredTypes.CoreInferredType,Rezoom.SQL.Compiler.InferredTypes.CoreInferredType)">
+<summary>
+ Unify the two types (ensure they are compatible and add constraints)
+ and produce the most specific type.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.InferredTypes.InferredNullable.StripJoinInducedNullability(System.Int32)">
+<summary>
+ Remove layers of nullability induced by an outer join.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.TypeInferenceExtensions.ITypeInferenceContext.UnifyLeftKnown(Rezoom.SQL.Compiler.InferredTypes.ITypeInferenceContext,Rezoom.SQL.Compiler.SourceInfo,Rezoom.SQL.Compiler.InferredTypes.InferredType,Rezoom.SQL.Compiler.InferredTypes.InferredType)">
+<summary>
+ Unify a known type (e.g. from a table we&apos;re inserting into or a declared CTE)
+ with an inferred type. The inferred type is forced nullable if the known type is nullable.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Compiler.AggregateChecker">
+<summary>
+ Checks that aggregate expressions are used correctly: that is, aggregates are not mixed with non-aggregate
+ expressions of columns unless grouping by those columns.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Compiler.Translators.ExprTranslationContext.Predicate">
+<summary>
+ The expression is expected to produce a value suitable for a predicate like a &quot;WHERE&quot; clause or
+ condition within a &quot;CASE&quot; expression.
+</summary>
+</member>
+<member name="T:Rezoom.SQL.Compiler.Translators.ExprTranslationContext.FirstClassValue">
+<summary>
+ The expression is expected to produce a first-class value
+ that can be passed to functions, returned from a select, etc.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.DefaultFunctions.builtins">
+<summary>
+ Erased functions that can always be supported, even if the DB doesn&apos;t have ANY functions.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.DefaultFunctions.common">
+<summary>
+ Functions that are supported by EVERY database. Surprisingly there aren&apos;t many of these.
+</summary>
+</member>
+<member name="M:Rezoom.SQL.Compiler.TSQL.TSQLExpression.IsPredicateBoolean(Rezoom.SQL.Compiler.Expr{Rezoom.SQL.Compiler.ObjectInfo{Rezoom.SQL.Compiler.ColumnType},Rezoom.SQL.Compiler.ExprInfo{Rezoom.SQL.Compiler.ColumnType}})">
+<summary>
+ Identifies expressions that are set up to use as predicates in T-SQL.
+ These expressions don&apos;t produce actual values.
+ For example, you can&apos;t `SELECT 1=1`, but you can do `SELECT 1 WHERE 1=1`.
+ Conversely, you can&apos;t `SELECT 1 WHERE tbl.BitColumn`, but you can do `SELECT tbl.BitColumn`.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.Config.Config.Optionals">
+<summary>
+ Type generation style for optionals.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.Config.Config.ConnectionName">
+<summary>
+ Connection string name to use at runtime.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.Config.Config.MigrationsPath">
+<summary>
+ Path to the migrations folder relative to the directory the config file resides in.
+</summary>
+</member>
+<member name="P:Rezoom.SQL.Compiler.Config.Config.Backend">
+<summary>
+ Which backend to use.
+</summary>
+</member>
+</members>
+</doc>
